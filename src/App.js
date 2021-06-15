@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+
 
 function App() {
+
+  const [formFields, setFormFields] = useState({ username: '', email: '' });
+
+  const updateFormFields = e => {
+    setFormFields(prevState => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+
+  console.log(formFields)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form>
+        <input type="text" name="username" onChange={updateFormFields} />
+        <input type="email" name="email" onChange={updateFormFields} />
+      </form>
     </div>
   );
 }
